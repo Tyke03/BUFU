@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUFU Web Hub - The Future of the Web is Ours to Build</title>
+    <script type="importmap">
+        {
+            "imports": {
+                "react": "https://esm.sh/react@18.2.0?dev",
+                "react/jsx-dev-runtime": "https://esm.sh/react@18.2.0/jsx-dev-runtime",
+                "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?dev",
+                "@websim/use-query": "https://esm.websim.com/@websim/use-query",
+                "@websim/websim-socket": "https://esm.websim.com/@websim/websim-socket"
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(102, 126, 234, 0.8); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .float-animation { animation: float 6s ease-in-out infinite; }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-effect { backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="main.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{
+  "database": {
+    "schema": {
+      "users": {
+        "id": {
+          "type": "text",
+          "description": "Unique user identifier"
+        },
+        "username": {
+          "type": "text",
+          "description": "User's chosen username"
+        },
+        "email": {
+          "type": "text",
+          "description": "User's email address"
+        },
+        "referral_code": {
+          "type": "text",
+          "description": "Referral code used during signup"
+        }
+      },
+      "features": {
+        "id": {
+          "type": "text",
+          "description": "Unique feature identifier"
+        },
+        "title": {
+          "type": "text",
+          "description": "Feature title"
+        },
+        "description": {
+          "type": "text",
+          "description": "Feature description"
+        },
+        "votes": {
+          "type": "integer",
+          "description": "Number of votes received"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Whether feature is in current voting round"
+        }
+      },
+      "votes": {
+        "id": {
+          "type": "uuid",
+          "description": "Unique vote identifier"
+        },
+        "user_id": {
+          "type": "text",
+          "description": "ID of user who voted"
+        },
+        "feature_id": {
+          "type": "text",
+          "description": "ID of feature voted for"
+        }
+      },
+      "feature_suggestions": {
+        "id": {
+          "type": "uuid",
+          "description": "Unique suggestion identifier"
+        },
+        "title": {
+          "type": "text",
+          "description": "Suggested feature title"
+        },
+        "description": {
+          "type": "text",
+          "description": "Suggested feature description"
+        },
+        "user_id": {
+          "type": "text",
+          "description": "ID of user who suggested the feature"
+        }
+      }
+    },
+    "instructions": "This database stores user accounts, feature proposals for voting, user votes, and feature suggestions. Users can vote on active features and suggest new ones for future voting rounds."
+  }
+}
