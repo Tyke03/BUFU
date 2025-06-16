@@ -1,28 +1,52 @@
 {
   "database": {
     "schema": {
-      "users": {
+      "users_v2": {
         "id": {
           "type": "text",
-          "description": "Unique user identifier"
+          "description": "Unique user identifier (from Websim)"
         },
         "username": {
           "type": "text",
-          "description": "User's chosen username"
+          "description": "User's username (from Websim)"
         },
         "email": {
           "type": "text",
           "description": "User's email address"
         },
-        "referral_code": {
+        "referral_code_used": {
           "type": "text",
-          "description": "Referral code used during signup"
+          "description": "Referral code used during signup (nullable)"
+        },
+        "level": {
+          "type": "integer",
+          "description": "User's current level"
+        },
+        "votes_available": {
+          "type": "integer",
+          "description": "Number of votes user can currently cast"
+        },
+        "referrals_count": {
+          "type": "integer",
+          "description": "Number of successful referrals made by the user"
+        },
+        "badges": {
+            "type": "jsonb",
+            "description": "Array of badges earned by the user (e.g., [\"First Steps\", \"Voter\"])"
+        },
+        "streak_days": {
+          "type": "integer",
+          "description": "Current daily activity streak"
+        },
+        "password_hash": {
+            "type": "text",
+            "description": "Placeholder to indicate a password was set during signup. Not used for authentication."
         }
       },
-      "features": {
+      "features_v2": {
         "id": {
           "type": "text",
-          "description": "Unique feature identifier"
+          "description": "Unique feature identifier (e.g., 'feature_avatar_customization')"
         },
         "title": {
           "type": "text",
@@ -32,33 +56,33 @@
           "type": "text",
           "description": "Feature description"
         },
-        "votes": {
-          "type": "integer",
-          "description": "Number of votes received"
-        },
         "active": {
           "type": "boolean",
           "description": "Whether feature is in current voting round"
         }
       },
-      "votes": {
+      "votes_v2": {
         "id": {
           "type": "uuid",
-          "description": "Unique vote identifier"
+          "description": "Unique vote identifier (auto-generated)"
         },
         "user_id": {
           "type": "text",
-          "description": "ID of user who voted"
+          "description": "ID of user who voted (references users_v2.id)"
         },
         "feature_id": {
           "type": "text",
-          "description": "ID of feature voted for"
+          "description": "ID of feature voted for (references features_v2.id)"
+        },
+        "created_at": {
+            "type": "timestamptz",
+            "description": "Timestamp of when the vote was cast"
         }
       },
-      "feature_suggestions": {
+      "feature_suggestions_v2": {
         "id": {
           "type": "uuid",
-          "description": "Unique suggestion identifier"
+          "description": "Unique suggestion identifier (auto-generated)"
         },
         "title": {
           "type": "text",
@@ -70,10 +94,14 @@
         },
         "user_id": {
           "type": "text",
-          "description": "ID of user who suggested the feature"
+          "description": "ID of user who suggested the feature (references users_v2.id)"
+        },
+         "created_at": {
+            "type": "timestamptz",
+            "description": "Timestamp of when the suggestion was made"
         }
       }
     },
-    "instructions": "This database stores user accounts, feature proposals for voting, user votes, and feature suggestions. Users can vote on active features and suggest new ones for future voting rounds."
+    "instructions": "This database stores user accounts (users_v2), feature proposals for voting (features_v2), user votes (votes_v2), and feature suggestions (feature_suggestions_v2). Users can vote on active features and suggest new ones. User data (ID, username) is sourced from Websim. Votes available and other user stats are managed within users_v2."
   }
 }
